@@ -1,6 +1,12 @@
 import React from 'react'
+import type { FormattedWeatherData } from '../types/weather';
 
-const TimeAndLocation = ({ weather: { formattedLocalTime, name, country },
+interface TimeAndLocationProps {
+  weather: Pick<FormattedWeatherData, 'formattedLocalTime' | 'name' | 'country'>;
+}
+
+const TimeAndLocation: React.FC<TimeAndLocationProps> = ({ 
+  weather: { formattedLocalTime, name, country }
 }) => {
   return (
     <div>

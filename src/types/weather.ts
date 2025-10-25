@@ -91,6 +91,10 @@ export interface FormattedWeatherData {
   temp_min: number;
   temp_max: number;
   humidity: number;
+  pressure: number;
+  visibility: number;
+  clouds: number;
+  windDeg: number;
   name: string;
   country: string;
   sunrise: string;
@@ -103,8 +107,11 @@ export interface FormattedWeatherData {
   timezone: number;
   lat: number;
   lon: number;
+  uvi?: number;
+  aqi?: number;
   hourly?: ForecastData[];
   daily?: ForecastData[];
+  extendedHourly?: ForecastData[];
 }
 
 export interface ForecastData {
@@ -112,6 +119,18 @@ export interface ForecastData {
   title: string;
   icon: string;
   date: string;
+  pop?: number;
+  humidity?: number;
+  feelsLike?: number;
+  tempMin?: number;
+  tempMax?: number;
+  description?: string;
+}
+
+export interface DailyForecastData extends ForecastData {
+  tempMin: number;
+  tempMax: number;
+  description: string;
 }
 
 export interface SearchParams {
@@ -128,3 +147,62 @@ export interface Query {
 }
 
 export type Units = "metric" | "imperial";
+
+// Air Quality Types
+export interface AirQualityResponse {
+  coord: Coordinates;
+  list: Array<{
+    main: {
+      aqi: number;
+    };
+    components: {
+      co: number;
+      no: number;
+      no2: number;
+      o3: number;
+      so2: number;
+      pm2_5: number;
+      pm10: number;
+      nh3: number;
+    };
+    dt: number;
+  }>;
+}
+
+// One Call API Type for UV Index
+export interface OneCallResponse {
+  lat: number;
+  lon: number;
+  timezone: string;
+  current: {
+    dt: number;
+    temp: number;
+    feels_like: number;
+    pressure: number;
+    humidity: number;
+    uvi: number;
+    clouds: number;
+    visibility: number;
+    wind_speed: number;
+    wind_deg: number;
+    weather: WeatherCondition[];
+  };
+  hourly: Array<{
+    dt: number;
+    temp: number;
+    feels_like: number;
+    humidity: number;
+    weather: WeatherCondition[];
+    pop: number;
+  }>;
+  daily: Array<{
+    dt: number;
+    temp: {
+      min: number;
+      max: number;
+      day: number;
+    };
+    weather: WeatherCondition[];
+    pop: number;
+  }>;
+}

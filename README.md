@@ -45,13 +45,26 @@ cd weather-app
 npm install
 ```
 
-3. Start the development server:
+3. Set up environment variables:
+
+```bash
+# Copy the example env file
+cp .env.example .env
+```
+
+Then edit `.env` and add your OpenWeatherMap API key:
+
+```env
+VITE_API_KEY=your_openweathermap_api_key_here
+```
+
+4. Start the development server:
 
 ```bash
 npm run dev
 ```
 
-4. Open your browser and navigate to `http://localhost:3000`
+5. Open your browser and navigate to `http://localhost:5173`
 
 ### Build for Production
 
@@ -105,11 +118,31 @@ src/
 
 ## API Configuration
 
-This app uses the OpenWeatherMap API. To use your own API key:
+This app uses the OpenWeatherMap API.
 
-1. Sign up at [OpenWeatherMap](https://openweathermap.org/api)
-2. Get your free API key
-3. Replace the `API_KEY` in `src/services/weatherService.ts`
+### Getting Your API Key
+
+1. Sign up for a free account at [OpenWeatherMap](https://openweathermap.org/api)
+2. Navigate to your API keys section
+3. Generate a new API key (or use the default one provided)
+
+### Setting Up the API Key
+
+1. Copy `.env.example` to `.env`:
+
+   ```bash
+   cp .env.example .env
+   ```
+
+2. Open `.env` and replace `your_api_key_here` with your actual API key:
+
+   ```env
+   VITE_API_KEY=your_actual_api_key_here
+   ```
+
+3. Restart the development server if it's already running
+
+**Important:** Never commit your `.env` file to version control. It's already included in `.gitignore`.
 
 ## Contributing
 

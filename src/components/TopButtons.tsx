@@ -34,14 +34,16 @@ const TopButtons: React.FC<TopButtonsProps> = ({ setQuery }) => {
     },
   ];
   return (
-    <div className="flex items-center justify-around my-6">
+    <div className="flex flex-wrap items-center justify-center gap-3 my-8">
       {cities.map((city) => (
         <button
           key={city.id}
-          className="text-lg text-white font-medium hover:bg-gray-700/20 px-3 py-2 rounded-md transition ease-in"
+          className="group relative text-base md:text-lg text-white font-semibold bg-gradient-to-br from-white/15 to-white/5 hover:from-white/30 hover:to-white/15 backdrop-blur-md px-5 md:px-7 py-3 rounded-2xl border border-white/30 transition-all duration-300 ease-out hover:scale-110 hover:shadow-2xl active:scale-95 overflow-hidden"
           onClick={() => setQuery({ q: city.name })}
         >
-          {city.name}
+          <span className="relative z-10">{city.name}</span>
+          <div className="absolute inset-0 bg-gradient-to-r from-cyan-400/20 to-blue-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-cyan-400/30 to-blue-500/30 blur-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
         </button>
       ))}
     </div>
